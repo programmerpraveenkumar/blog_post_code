@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .days_row{
+            display: grid;
+            grid-column: row;    
+            font-size: 20px;
+            grid-template-columns: auto auto auto auto auto auto auto;
+            font-size: 20px;
+            text-align: center;
+            width: 50%;
+        }        
+        .date_selection{
+            display: flex;
+            margin: 10px 0;
+            border: 1px solid;
+            padding: 10px;
+            width: 50%;
+        }
+        .date_selection div{margin-left: 20px;}
+        .date_selection div button {      padding: 10px; }        
+        .date_selection div label, .date_selection select{
+            font-size: 25px;
+        }       
+        .calender_wrapper{
+            width: 50%;
+            margin: 0 auto;
+        }
+        #days_title {
+           color: red;
+           font-weight: bold;
+        }
+    </style>
+
+
+    <script>
+            var startYear = 2000;
+            var currentDate = new Date();
+            var monthList = ['Jan','Feb','Mar','Apr','may','Jun','July','Aug','Sep','Oct','Nov','Sep',"Dec"]; 
+            function createYearOptions(){
+                let tmp = "";
+                let yearList = createYear();
+                yearList.forEach((obj,index)=>{
+                    tmp += "<option>"+obj+"</option>";
+                })
+                document.getElementById("yearOpt").innerHTML = tmp;
+            } 
+            function createYear(){
+                let startYearTmp = startYear;
+                let yearList =  [];
+                    for(startYearTmp;startYearTmp<=currentDate.getFullYear();startYearTmp++){
+                        yearList.push(startYearTmp);
+                    }
+                    return yearList;
+            }
+
+            function createMonthOptions(){
+                let tmp = "";                
+                monthList.forEach((obj,index)=>{
+                    tmp += "<option value='"+index+"'>"+obj+"</option>";
+                })
+                document.getElementById("monthOpt").innerHTML = tmp;
+            }
+
+
+            function getTotalDays(dateObj){
+                var tmpDateObj = new Date(dateObj);
+                tmpDateObj.setMonth(dateObj.getMonth()+1);
+                tmpDateObj.setDate(0);
+                return tmpDateObj.getDate();
+            }
+
+            function createCalender(){
+                let selectedYear = document.getElementById("yearOpt").value;
+                let selectedMonth = document.getElementById("monthOpt").value;
+                let selectedDateObj = new Date(selectedYear,selectedMonth,1);
+                let selectedStartDay = selectedDateObj.getDay();             
+                let totalDaysOfTheMonth = getTotalDays(selectedDateObj);               
+                if(selectedStartDay >0){
+                    tmp = createEmptyCell(selectedStartDay);
+                }                                    
+                tmp = tmp+createRow(totalDaysOfTheMonth);
+                document.getElementById("day_row").innerHTML = '<div class="days_row">'+tmp+'</div>';
+            }            
+            function createEmptyCell(startDay){
+                let tmp = ""
+                for(let start=0;start<startDay;start++){
+                        tmp += '<div></div>';
+                }
+                return tmp;
+            }
+
+            function createRow(endDay){
+                let tmp = ""
+                for(let startDay = 1;startDay<=endDay;startDay++){
+                        tmp += '<div>'+startDay+'</div>';
+                }                
+                return tmp;                
+            }
+
+
+          
+
+           
+
+
+    </script>
+    
+</head>
+<body>
+   
+    <div class="calender_wrapper">
+        <div>
+            <h1>Monthly Calendar in javascript </h1>
+        </div>
+        <div class="date_selection">            
+            <div>
+                <label for="">Select month</label>
+                <select  id="monthOpt"></select>
+            </div>
+            <div>
+                <label for="">Select Year</label>
+                <select name="" id="yearOpt"></select>
+            </div>
+            <div>
+                <button onclick="createCalender()">Create Calender</button>
+            </div>
+        </div>
+        <div id="days_title" class="days_row">
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+        </div>
+        <div id="day_row"></div>
+    </div>
+   
+</body>
+<script>
+     createYearOptions();
+     createMonthOptions();
+    // createCalender();
+</script>
+</html>
