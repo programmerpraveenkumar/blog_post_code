@@ -1,0 +1,18 @@
+<html lang="en">
+<head>    
+</head>
+<body>
+    <input id='pwd' type="password" placeholder="Enter Password">
+    <input id="btnpwd" type="checkbox">Show Password       
+</body>
+<script>
+    document.getElementById("btnpwd").addEventListener("change",()=>{
+        let pwdobj = document.getElementById("pwd");
+        if(pwdobj.type =='password'){
+            pwdobj.type ="text"
+        }else{
+            pwdobj.type ="password"
+        }
+    })
+</script>
+</html>
