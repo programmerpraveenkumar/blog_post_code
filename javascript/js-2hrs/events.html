@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        function sampleFunction(){
+            //get the value from the textbox
+            let value = document.getElementById("input").value;
+            document.getElementById("h1_id").innerHTML = value;
+          //  console.log(value);
+           // alert("Sample alert");
+        }
+    </script>
+</head>
+<body>
+    <input type="text" placeholder="Enter message" id="input"/>
+    <h1 id="h1_id">this is heading tag</h1>
+    <!-- <div onclick="sampleFunction()">Sample Div element</div> -->
+    <button onclick="sampleFunction()">Click me</button>
+</body>
+</html>

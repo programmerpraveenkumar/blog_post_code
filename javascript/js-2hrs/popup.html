@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <script>
+            function showALert(){
+                alert("sample alert");
+            }
+            function showConfirm(){
+                let value = confirm("sample confirm");
+                console.log(value);
+            }
+            function showPrompt(){
+                let value = prompt("Enter your name");
+                console.log(value)
+            }
+        </script>
+</head>
+<body>
+    
+    <button onclick="showALert()">alert</button>
+    <button onclick="showConfirm()">Confirm</button>
+    <button onclick="showPrompt()">prompt</button>
+</body>
+</html>

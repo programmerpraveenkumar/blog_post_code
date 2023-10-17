@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        //object->key and value
+        var person = {
+            "name":"sample name",
+            "email":"sample@gmail.com",
+            "name":"updatename",//duplicate key
+            "mobile":78454545454
+        };
+        console.log(person['name']);
+        console.log(person['email']);
+        console.log("-----------------")
+        for (let key in person) {
+            console.log(key,person[key]);
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

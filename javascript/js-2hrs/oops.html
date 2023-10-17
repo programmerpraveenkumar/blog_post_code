@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        class Person{
+            firstName = "Shiva";
+            //constructor will be called during the obejct creation.
+            constructor(){
+                console.log("this is constructor");
+            }
+            //function
+            printName(){
+                    console.log(this.firstName);//access the variable
+            }
+            replaceTextInH1(){          
+                let value = document.getElementById("input").value;
+                document.getElementById("h1_id").innerHTML = value;         
+            }
+        }
+        let obj = new Person();
+        // obj.firstName = "new name";//update the value;
+        // obj.printName();//calling the method usign object.
+    </script>
+</head>
+<body>
+    <input type="text" placeholder="Enter message" id="input"/>
+    <h1 id="h1_id">this is heading tag</h1>
+    <button onclick="obj.replaceTextInH1()">Click me</button>
+</body>
+</html>

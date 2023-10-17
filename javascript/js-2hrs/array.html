@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+
+        //index array []
+        var nameList = ["shiva","vishnu","parvati","india","usa"];
+        console.log(nameList[0]);//access the 0th index
+        console.log(nameList[2]);
+        console.log(nameList[10]);//undefined
+
+        for (let index in nameList) {
+                console.log(index,nameList[index]);
+        }
+        console.log("----------");
+        nameList.forEach(value=>{
+            console.log(value);
+        })
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
