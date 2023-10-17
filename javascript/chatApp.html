@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        var chatMessages = [];
+        function processMessagesToHtml(){
+            let chatListHtml = "";
+            chatMessages.forEach((val,index)=>{
+                chatListHtml += `<div>${val}</div>`;
+            })
+            document.getElementById("chatList").innerHTML = chatListHtml;
+        }
+    </script>
+</head>
+<body>
+    <div id="chatList"></div>
+    <textarea name="" id="chatInput"></textarea>
+    <script>
+        let chatInputObj = document.getElementById("chatInput");
+        chatInputObj.addEventListener("keyup",(e)=>{
+            if(e.keyCode == 13){
+                let val = e.target.value;
+                chatMessages.push(val);
+                e.target.value = "";//clear the textarea
+                processMessagesToHtml();
+            }
+        })
+
+    </script>
+</body>
+</html>

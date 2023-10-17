@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+</head>
+
+<body>    
+    <input type="color" id="colorPicker"/>
+</body>
+
+<script>
+    let colorPickerObj = document.getElementById("colorPicker");
+    colorPickerObj.addEventListener("change",()=>{
+        let color = colorPickerObj.value;
+        document.body.style.backgroundColor = color;
+    })
+</script>
+
+</html>
