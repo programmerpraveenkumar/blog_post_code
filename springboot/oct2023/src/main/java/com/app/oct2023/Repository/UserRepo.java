@@ -1,6 +1,6 @@
-package com.youtube.oct2023.Repository;
+package com.app.oct2023.Repository;
 
-import com.youtube.oct2023.Model.UserModel;
+import com.app.oct2023.Model.UserModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

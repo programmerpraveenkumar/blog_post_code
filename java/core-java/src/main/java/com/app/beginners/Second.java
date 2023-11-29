@@ -1,2 +1,5 @@
-package com.app.beginners;public class Second {
+package com.app.beginners;
+
+public class Second {
+    public static String firstName = "sample name";
 }

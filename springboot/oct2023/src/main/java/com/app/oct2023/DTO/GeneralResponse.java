@@ -1,4 +1,4 @@
-package com.youtube.oct2023.DTO;
+package com.app.oct2023.DTO;
 
 public class GeneralResponse {
     private String message;

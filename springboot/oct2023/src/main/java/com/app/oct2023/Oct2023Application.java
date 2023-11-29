@@ -1,4 +1,4 @@
-package com.youtube.oct2023;
+package com.app.oct2023;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

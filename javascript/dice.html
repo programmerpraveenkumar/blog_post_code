@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            width:85px;;
+        }
+        .container{
+            width: 50%;
+            margin: 20% auto;
+        }
+        .dice_btn{
+            background-color: aliceblue;
+            padding: 10px;
+            font-size: 30px;
+            border-radius: 10px;
+        }
+        .loading{
+            width: 115px;
+        }
+    </style>
+    <script>
+        var images = [];
+        function rollDice(){
+            let firstDice = Math.floor((Math.random()*6)+1);
+            let secondDice = Math.floor((Math.random()*6)+1);
+            document.getElementById("diceVal").innerHTML =getLoadingImage();
+            setTimeout(()=>{
+                document.getElementById("diceVal").innerHTML =getDiceImage(firstDice)+" "+getDiceImage(secondDice);
+            },2000)
+            
+            console.log(firstDice,secondDice);
+        }
+        function getDiceImage(number){
+            return `<img src="diceimages/dice-${number}.png"/>`
+        }function getLoadingImage(){
+            return `<img class="loading" src="diceimages/dice-loading.gif"/>`
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1 id="diceVal"></h1>
+        <button class="dice_btn" onclick="rollDice()">Roll Dice</button>
+    </div>
+    
+</body>
+</html>

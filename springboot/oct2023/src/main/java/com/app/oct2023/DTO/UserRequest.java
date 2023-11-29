@@ -1,17 +1,10 @@
-package com.youtube.oct2023.Model;
+package com.app.oct2023.DTO;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "user")
-public class UserModel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UserRequest {
     Long id;
     String email;
     String name;
-    String  password;
-
+    String password;
     public Long getId() {
         return id;
     }
@@ -19,6 +12,9 @@ public class UserModel {
     public void setId(Long id) {
         this.id = id;
     }
+
+
+
 
     public String getEmail() {
         return email;

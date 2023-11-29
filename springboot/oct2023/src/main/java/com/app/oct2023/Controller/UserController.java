@@ -1,9 +1,9 @@
-package com.youtube.oct2023.Controller;
+package com.app.oct2023.Controller;
 
-import com.youtube.oct2023.DTO.GeneralResponse;
-import com.youtube.oct2023.DTO.UserRequest;
-import com.youtube.oct2023.Model.UserModel;
-import com.youtube.oct2023.Service.UserService;
+import com.app.oct2023.DTO.GeneralResponse;
+import com.app.oct2023.DTO.UserRequest;
+import com.app.oct2023.Model.UserModel;
+import com.app.oct2023.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
