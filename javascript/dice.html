@@ -23,7 +23,6 @@
         }
     </style>
     <script>
-        var images = [];
         function rollDice(){
             let firstDice = Math.floor((Math.random()*6)+1);
             let secondDice = Math.floor((Math.random()*6)+1);
@@ -36,14 +35,15 @@
         }
         function getDiceImage(number){
             return `<img src="diceimages/dice-${number}.png"/>`
-        }function getLoadingImage(){
+        }
+        function getLoadingImage(){
             return `<img class="loading" src="diceimages/dice-loading.gif"/>`
         }
     </script>
 </head>
 <body>
     <div class="container">
-        <h1 id="diceVal"></h1>
+        <div id="diceVal"></div>
         <button class="dice_btn" onclick="rollDice()">Roll Dice</button>
     </div>
     
