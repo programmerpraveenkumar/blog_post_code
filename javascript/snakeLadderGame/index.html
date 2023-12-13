@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
     <title>Document</title>
     <style>
         #box_container{
@@ -24,7 +25,7 @@
             color: #fff;   
             overflow: hidden;         
         }
-        .snake img{
+        .snake .action_snake{
             animation: rotateImg 10s linear infinite;
         }
 
@@ -35,7 +36,10 @@
         span{
             font-size: .50em;           
         }
-   
+        #box_container i{
+            font-size: 3.5rem;
+            margin-left: 50px;
+        }
   @keyframes rotateImg{
     0% {
      transform: rotate(0deg);
@@ -56,50 +60,99 @@
     <div id="box_container">
 
     </div>
-
+    <button onclick="rollDice()">Roll Dice</button>
+    <h1 id="notification"></h1>
     <script>
+        var currentPosition = 1;
 var boxDetails = {
         5:{
             type:"ladder",
-            "action":"12"
+            "action":12
         },
         9:{
             type:"snake",
-            "action":"2"
+            "action":2
         },
         57:{
             type:"ladder",
-            "action":"63"
+            "action":63
         },
         43:{
             type:"snake",
-            "action":"25"
+            "action":25
         }, 24:{
             type:"snake",
-            "action":"14"
+            "action":14
         },
         27:{
             type:"ladder",
-            "action":"35"
+            "action":35
         },
        }
 
        let box_container =  document.getElementById("box_container");
        for(i=100;i>=1;i--){
             let tmp = document.createElement('div');
-            tmp.innerHTML = i;            
+            tmp.innerHTML = i;        
+            tmp.id = "id_"+i;    
             if(boxDetails.hasOwnProperty(i)){
                 let obj = boxDetails[i];
                 let img = document.createElement('img');
                 let span = document.createElement('span');
                 span.innerHTML = "Go to "+obj.action;
                 img.src="images/"+obj.type+".png";
+                img.classList.add("action_"+obj.type);
                 tmp.classList.add(obj.type);
                 tmp.append(span);        
                 tmp.append(img);
             }
             box_container.append(tmp);
        }
+       function rollDice(){
+        //generating the random number between 1 to 6
+        let pos = Math.floor((Math.random()*6)+1);
+        let newPosition = currentPosition + pos;
+        movePlayer(newPosition);
+       }
+       function movePlayer(newPosition){
+        if(newPosition > 100){
+            writeOnNotification("Position is more than 100");
+            return;
+        }
+        //remove the existing the player icon
+        if(newPosition > 1){
+            document.getElementById("id_"+currentPosition).lastElementChild.remove();
+        }            
+        //let img = `<i class="fa fa-user" id="id_${newPosition}" aria-hidden="true"></i>`;
+        let i = document.createElement("i");
+        i.classList.add ('fa','fa-user');
+        i.id = "id_"+newPosition;
+
+      
+        document.getElementById("id_"+newPosition).append(i);
+        // console.log(currentPosition,newPosition);
+        currentPosition = newPosition;
+        writeOnNotification("Moving to new position "+currentPosition);
+
+        if(boxDetails.hasOwnProperty(newPosition)){
+            setTimeout( ()=>{
+                if(boxDetails[newPosition].type =='snake'){
+                    writeOnNotification("snake bites..moving to new position "+boxDetails[newPosition].action);
+                }else{
+                    writeOnNotification("Got a ladder..moving to new position "+boxDetails[newPosition].action);
+                }
+                
+                        movePlayer(boxDetails[newPosition].action);                
+                },1000
+            )
+        }
+       }
+    // 
+
+    movePlayer(currentPosition);
+    function writeOnNotification(message){
+        document.getElementById("notification").innerHTML = message;
+    }
     </script>
 </body>
 </html>
