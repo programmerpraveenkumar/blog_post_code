@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
     <title>Document</title>
     <style>
         #box_container{
@@ -108,12 +108,16 @@ var boxDetails = {
             }
             box_container.append(tmp);
        }
+
+
        function rollDice(){
         //generating the random number between 1 to 6
         let pos = Math.floor((Math.random()*6)+1);
         let newPosition = currentPosition + pos;
         movePlayer(newPosition);
        }
+
+
        function movePlayer(newPosition){
         if(newPosition > 100){
             writeOnNotification("Position is more than 100");
@@ -123,12 +127,12 @@ var boxDetails = {
         if(newPosition > 1){
             document.getElementById("id_"+currentPosition).lastElementChild.remove();
         }            
-        //let img = `<i class="fa fa-user" id="id_${newPosition}" aria-hidden="true"></i>`;
+        //creating the player icon
         let i = document.createElement("i");
         i.classList.add ('fa','fa-user');
         i.id = "id_"+newPosition;
 
-      
+        //addin the icon in the new position
         document.getElementById("id_"+newPosition).append(i);
         // console.log(currentPosition,newPosition);
         currentPosition = newPosition;
@@ -147,9 +151,10 @@ var boxDetails = {
             )
         }
        }
-    // 
-
+    
+    //executes first time during the page load
     movePlayer(currentPosition);
+
     function writeOnNotification(message){
         document.getElementById("notification").innerHTML = message;
     }

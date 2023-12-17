@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
+
+    <script>
+        var notesList = [];
+        function createNotes(title,notes){
+                let div = document.createElement("div");
+                let p = document.createElement('p');
+                let h2 = document.createElement('h2');
+                div.classList.add('notes');
+                h2.classList.add('title');
+
+                h2.innerHTML = title;
+                p.innerHTML = notes;
+                div.append(h2);
+                div.append(p);
+
+                document.getElementById("noteslist").append(div);
+        }
+    </script>
+    <style>
+        #noteslist{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        #noteslist div.notes{
+            width: 20%;
+            margin:2px;
+            padding: 5px;
+            text-align: center;
+            border:1px solid #000;
+        }
+        .page-title h2{
+            margin:0;
+        }
+        .page-title{
+            font-size: 2rem;
+            text-transform: capitalize;
+            width: 50%;
+            margin: 0 auto;
+            padding: 10px;
+            background-color: aliceblue;
+        }
+        #noteslist div.notes .title{
+            text-transform: capitalize;
+        }
+        .create-notes-wrapper{
+            text-align: center;
+            display: flex;
+            
+        }
+        .create-notes-wrapper button{
+            padding: 10px;
+            background-color: aliceblue;
+            cursor: pointer;
+            font-size: 2rem;
+            text-transform: capitalize;
+        }
+        .create-notes-model{
+            border: 1px solid;
+            width: 80%;
+            background-color: #efe8e8d6;
+            margin: 0 auto;
+            height: 80vh;
+            position: absolute;
+            display: none;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        .create-notes-model.show{
+            display: block;
+        }
+        .create-notes-model input,.create-notes-model  textarea{
+            width: 95%;
+            margin:5px;
+            font-size: 1.5rem;
+            text-align: left;
+        }
+        
+        .create-notes-model .close-btn{
+            position: absolute;
+            top: 0px;
+            right: 5px;
+            background: red;
+        }
+        .create-notes-model .close-btn i{
+            color: #fff;;
+        }
+        .create-notes-model .close-btn:hover{
+            background: rgb(138, 25, 25);
+            cursor: pointer;
+        }
+        .create-notes-model button{
+            text-align: center;
+        }
+        .create-notes-model  textarea{
+            height: 50vh;;
+            resize: none;
+        }
+        .model_content{
+            border: 1px solid;
+            width: 50%;
+            margin: 0 auto;
+        }
+        .create-notes-model .create-notes-btn{
+
+        }
+        .model-title{
+            text-align: center;
+        }
+    </style>
+
+<script>
+
+</script>
+</head>
+<body>
+    <div class="create-notes-wrapper">
+        <div class="page-title">
+            <h2 >Notes App</h2>
+            <div>
+                <input type="text" id="search" placeholder="Enter Text to Filter Notes">
+            </div>
+        </div>
+        
+        
+        <button class="create-btn">
+            <i class="fa fa-pencil"></i>    
+        </button>
+    </div>
+  
+    <div id="noteslist">
+        <!-- <div class="notes">
+            <h2 class="title">title notes</h2>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Temporibus saepe, facere enim repellendus, ipsa nisi voluptate minus quas vel porro modi nemo magni commodi velit tempore iusto, inventore sit officia.</p>
+        </div> -->
+    </div>
+
+    <div id="create_model_wrapper" class="create-notes-model">
+        <div class="model_content">
+            <h1 class="model-title">Create Notes</h1>
+            <div>
+                <button class="close-btn">
+                    <i class="fa fa-times"></i>    
+                </button>
+                
+            </div>
+            <div>
+                <input type="text" placeholder="Enter title" class="title"/>
+            </div>
+            <div>
+                <textarea placeholder="Enter Message" class="content"></textarea>
+            </div>
+                <div>
+                    <button class="create-notes-btn">Create</button>
+                </div>    
+        </div>
+       
+
+    </div>
+    
+</body>
+
+<script>
+     document.querySelector(".create-btn").addEventListener('click',()=>{
+        showModel();
+     });
+     document.querySelector(".close-btn").addEventListener('click',()=>{
+        hideModel();
+     });
+    document.querySelector(".create-notes-btn").addEventListener('click',()=>{
+        let titleobj = document.querySelector("input.title");
+        let contentObj =  document.querySelector(".content");
+        notesList.push({"title":titleobj.value,"content":contentObj.value});
+        createNotes(titleobj.value,contentObj.value);
+        titleobj.value = "";
+        contentObj.value = "";
+        hideModel();
+    })
+    document.querySelector("#search").addEventListener('keyup',searchNotes);
+    
+    function searchNotes(e){
+        document.getElementById("noteslist").innerHTML = "";//clearing the existing elements
+        let val = e.target.value;
+        let filter = notesList.filter(o=>{
+            return o.content.indexOf(val) !== -1;
+        })
+            if(filter.length <=0){
+                filter = notesList;
+            }            
+            filter.forEach(o=>{
+                createNotes(o.title,o.content);
+            })   
+    }
+    function showModel(){
+        document.getElementById("create_model_wrapper").classList.add("show");
+    }
+    function hideModel(){
+        document.getElementById("create_model_wrapper").classList.remove("show");
+    }
+</script>
+</html>
