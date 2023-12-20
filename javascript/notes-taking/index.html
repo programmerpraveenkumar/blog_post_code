@@ -115,6 +115,15 @@
         .model-title{
             text-align: center;
         }
+        .search_input_wrapper{
+            text-align: center;
+        }
+        .search_input_wrapper input{
+            width: 30%;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
     </style>
 
 <script>
@@ -125,9 +134,7 @@
     <div class="create-notes-wrapper">
         <div class="page-title">
             <h2 >Notes App</h2>
-            <div>
-                <input type="text" id="search" placeholder="Enter Text to Filter Notes">
-            </div>
+           
         </div>
         
         
@@ -135,12 +142,11 @@
             <i class="fa fa-pencil"></i>    
         </button>
     </div>
-  
+    <div class="search_input_wrapper">
+        <input type="text" id="search" placeholder="Enter Text to Filter Notes">
+    </div>
     <div id="noteslist">
-        <!-- <div class="notes">
-            <h2 class="title">title notes</h2>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Temporibus saepe, facere enim repellendus, ipsa nisi voluptate minus quas vel porro modi nemo magni commodi velit tempore iusto, inventore sit officia.</p>
-        </div> -->
+       
     </div>
 
     <div id="create_model_wrapper" class="create-notes-model">
