@@ -26,5 +26,11 @@ public class UserController {
         return ResponseEntity.ok(list);
     }
 
+    @PostMapping("userCreate")
+    public ResponseEntity<?> userCreate(){
+        userService.createUser();
+        return ResponseEntity.ok("");
+    }
+
 
 }

@@ -3,7 +3,9 @@ package com.dec2023.service;
 import com.dec2023.dto.LoginRequest;
 import com.dec2023.model.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,7 @@ import java.util.List;
 public class UserService {
     @Autowired
     NamedParameterJdbcTemplate namedJdbcTemplate;
+
 
         public List<UserModel> getUserList(){
                 String sql ="select name,email from user";
@@ -30,4 +33,15 @@ public class UserService {
 
               return userModelList;
         }
+    public void createUser(){
+        String sql ="insert into user(id,name,email,password)values(:id,:name,:email,:password)";
+
+        MapSqlParameterSource in = new MapSqlParameterSource();
+        in.addValue("name","test");
+        in.addValue("email","test@gmail.com");
+        in.addValue("password","testpwd");
+        in.addValue("id",2);
+
+        namedJdbcTemplate.update(sql,in);
+    }
 }
