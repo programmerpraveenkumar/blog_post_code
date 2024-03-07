@@ -26,6 +26,8 @@ import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@RunWith(MockitoJUnitRunner.class)
+@SpringBootTest
 public class UserServiceTest {
 
     @InjectMocks
@@ -35,9 +37,8 @@ public class UserServiceTest {
 
     @Test
     void loginTest()throws Exception{
-        LoginRequest loginRequest = new LoginRequest();
-        loginRequest.setEmail("test@gmail.com");
-        loginRequest.setPassword("test");
+        //setup the test data
+        LoginRequest loginRequest = TestUtil.getLoginRequest();
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue("email",loginRequest.getEmail());
         mapSqlParameterSource.addValue("password",loginRequest.getPassword());
@@ -54,16 +55,17 @@ public class UserServiceTest {
                         Mockito.any(RowMapper.class)))
                 .thenReturn(um);
 
+        //calling the actual code
         UserModel userModel = userService.loginValidate(loginRequest);
+
+        //validating against the data
         assertEquals(loginRequest.getEmail(),userModel.getEmail());
         assertEquals(loginRequest.getPassword(),userModel.getPassword());
     }
 
     @Test
     void loginTestException()throws Exception{
-        LoginRequest loginRequest = new LoginRequest();
-        loginRequest.setEmail("test@gmail.com");
-        loginRequest.setPassword("test");
+        LoginRequest loginRequest = TestUtil.getLoginRequest();
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue("email",loginRequest.getEmail());
         mapSqlParameterSource.addValue("password",loginRequest.getPassword());

@@ -48,8 +48,8 @@ public class UserService {
     public UserModel loginValidate(LoginRequest loginRequest)throws Exception{
         String sql ="select name,email from user where email=:email and password =:password";
         MapSqlParameterSource in = new MapSqlParameterSource();
-//        in.addValue("email",loginRequest.getEmail());
-//        in.addValue("password",loginRequest.getPassword());
+        in.addValue("email",loginRequest.getEmail());
+        in.addValue("password",loginRequest.getPassword());
         List<UserModel> userModelObj = namedJdbcTemplate.query(sql, in, new RowMapper<UserModel>() {
             @Override
             public UserModel mapRow(ResultSet rs, int rowNum) throws SQLException {
