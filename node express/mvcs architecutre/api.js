@@ -1,11 +1,9 @@
 var exp = require('express');
 const { UserService } = require('./Service/UserService');
-const { MobileModel } = require('./model/MobileModel');
 var router = exp.Router();
 let userService = new UserService();
-// http://localhost:8080/api/sample/login
 router.get('/getAll',async (req,res)=>{
-    let dbData = await userService.getAllData({ include: MobileModel });
+    let dbData = await userService.getAllData();
     res.json(dbData);
 })
 router.post('/login',async (req,res)=>{
