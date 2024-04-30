@@ -10,6 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "mysql": "^2.18.1",
-    "read-excel-file": "^5.7.1"
+    "mysql2": "^3.9.7",
+    "read-excel-file": "^5.7.1",
+    "sequelize": "^6.37.3"
   }
 }
